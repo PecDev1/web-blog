@@ -15,7 +15,6 @@ INSTALLED_APPS = [
 
     'django_light',
 
-    'admin_tools_stats',  # this must be BEFORE 'admin_tools' and 'django.contrib.admin'
     'django_nvd3',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -31,6 +30,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
 ]
+
 
 
 MIDDLEWARE = [
