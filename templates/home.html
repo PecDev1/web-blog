@@ -1,0 +1,878 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+.animated-btn.rainbow-border {
+  position: relative;
+  background: #232526;
+  color: #fff;
+  font-size: 1.15rem;
+  padding: 1em 2.5em;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  z-index: 1;
+  transition: background 0.2s;
+}
+.animated-btn.rainbow-border .border-anim {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  z-index: -1;
+  border-radius: 34px;
+  background: linear-gradient(270deg, #ff6ec4, #7873f5, #1fd1f9, #ff6ec4);
+  background-size: 600% 600%;
+  animation: rainbowAnim 3s linear infinite;
+  filter: blur(2px);
+}
+@keyframes rainbowAnim {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.animated-btn.rainbow-border:hover {
+  background: #343642;
+}
+          /* First Typewriter (Green) */
+.typewriter11 {
+  font-family: 'VT323', monospace, monospace;
+  font-size: 2rem;
+  color: #39ff14;
+  text-shadow:
+    0 0 2px #39ff14,
+    0 0 10px #39ff14,
+    0 0 20px #39ff14,
+    0 0 40px #39ff14;
+  background: none;
+  white-space: pre;
+  letter-spacing: 1px;
+}
+
+.typewriter-cursor11 {
+  display: inline-block;
+  width: 1ch;
+  color: #39ff14;
+  font-weight: bold;
+  text-shadow:
+    0 0 5px #39ff14,
+    0 0 20px #39ff14;
+  animation: blink-cursor-green 1s steps(2, start) infinite;
+}
+
+/* Second Typewriter (White) */
+.typewriter-welcome {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.typewriter-welcome-line {
+  opacity: 0;
+  animation: fadeIn 0.2s forwards;
+}
+
+.typewriter-welcome-cursor {
+  position: relative;
+  display: inline-block;
+  margin: 10px auto;
+  border-right: 2px solid rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.typewriter-welcome-animation {
+  visibility: visible;
+  animation:
+    typewriter-welcome 3s steps(40) forwards,
+    blinkingCursor-welcome 800ms infinite;
+}
+
+.no-cursor-welcome {
+  border-right: none !important;
+}
+
+/* Animations */
+@keyframes blink-cursor-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes typewriter-welcome {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blinkingCursor-welcome {
+  from, to { border-color: transparent; }
+  50% { border-color: rgba(255, 255, 255, 0.75); }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .typewriter11 {
+    font-size: 1.5rem;
+  }
+
+  .typewriter-welcome {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .typewriter11 {
+    font-size: 1.2rem;
+  }
+
+  .typewriter-welcome {
+    font-size: 1.1rem;
+  }
+}
+        body{
+   background: linear-gradient(to right, #080030, #191970);
+
+
+
+   }
+        /* Grid Layout */
+        .wrapper {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 100px;
+            grid-auto-rows: 200px;
+            grid-template-areas:
+                "a a a a b b b b"
+                "a a a a b b b b"
+                "c c c c d d d d"
+                "c c c c d d d d";
+        }
+
+        .wrapper > div {
+            border: 2px solid black;
+            border-radius: 5px;
+            background-color: none;
+            padding: 1em;
+            color: blue;
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .wrapper > div.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .item1 {
+            height: 150px;
+            margin-left: 10%;
+            align-self: start;
+            grid-area: a;
+            margin-top: 200px;
+        }
+
+        .item2 {
+            margin-top: 800px;
+            height: 150px;
+            margin-right: 10%;
+            align-self: center;
+            grid-area: b;
+        }
+
+        .item3 {
+            margin-top: 200px;
+            margin-left: 10%;
+            align-self: center;
+            grid-area: c;
+        }
+
+        .item4 {
+            margin-left: -50px;
+            width: 700px;
+            margin-bottom: -800px;
+            margin-right: 30%;
+            align-self: end;
+            grid-area: d;
+        }
+
+
+        /* timeline */
+        :root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4cc9f0;
+  --text-color: #f8f9fa;
+  --background-color: #1a1a2e;
+}
+
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    border-radius: 15px;
+    background: none; /* Remove background gradient */
+    box-shadow: none; /* Remove box shadow */
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--accent-color);
+}
+
+.age-display {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  background: rgba(67, 97, 238, 0.2);
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  min-width: 120px;
+  transition: all 0.3s ease;
+}
+
+.time-unit:hover {
+  transform: translateY(-5px);
+  background: rgba(67, 97, 238, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.time-unit span:first-child {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.time-unit span:last-child {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.subtext {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.creation-date {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.8rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.creation-date p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+#creation-date {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .age-display {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .time-unit {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-width: auto;
+    padding: 1rem 1.5rem;
+  }
+}
+/* Slide animatsiyasi uchun yangi qism */
+.slide-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideIn 0.8s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Har bir blok uchun animatsiya kechikishi */
+.time-unit:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.time-unit:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.time-unit:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.time-unit span:first-child {
+  transition: all 1.8s ease;
+}
+        /* skills */
+
+/**/
+ .counter {
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            width: 100px;
+            min-height: 246px;
+            padding: 20px 0 0;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .counter:after {
+            content: '';
+            background: linear-gradient(to right, #eff0f2, #fefefe);
+            height: 125px;
+            width: 125px;
+            border-radius: 15px;
+            border: 3px solid #fff;
+            box-shadow: 5px 0 8px rgba(0, 0, 0, 0.2);
+            transform: translateX(-50%) rotate(45deg);
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            z-index: -1;
+        }
+
+        .counter .counter-icon {
+            background: linear-gradient(to right, #fe8c00, #f83600);
+            font-size: 30px;
+            line-height: 60px;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .counter h3 {
+            color: #f83600;
+            font-size: 17px;
+            font-weight: 500;
+            text-transform: capitalize;
+            line-height: 22px;
+            padding: 0 30px;
+            margin: 0 0 15px;
+        }
+
+        .counter .counter-value {
+            margin-bottom: 30px;
+            background: #fe8c00;
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            width: 100%;
+            padding: 10px 0 6px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.6), 0 0 0 2px #fff;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+.counter .counter-icon{
+padding-top: 15px;
+    background: linear-gradient(to right,#fe8c00,#f83600);
+    font-size: 30px;
+    line-height: 60px;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
+}
+.counter h3{
+    color: #f83600;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 22px;
+    padding: 0 10px;
+    margin: 0 0 15px;
+}
+.counter.green .counter-value{ background: #01c700; }
+.counter.green .counter-icon{ background: linear-gradient(to right,#01c700,#019b01); }
+.counter.green h3{ color: #019b01; }
+
+.counter.blue .counter-value{ background: #28a9e2; }
+.counter.blue .counter-icon{ background: linear-gradient(to right,#28a9e2,#0057c5); }
+.counter.blue h3{ color: #0057c5; }
+
+.counter.gray .counter-value{ background: #36474f; }
+.counter.gray .counter-icon{ background: linear-gradient(to right,#36474f,#0d0e10); }
+.counter.gray h3{ color: #0d0e10; }
+
+/* Yangi ranglar */
+.counter.red .counter-value{ background: #ff4d4d; }
+.counter.red .counter-icon{ background: linear-gradient(to right,#ff4d4d,#b30000); }
+.counter.red h3{ color: #b30000; }
+
+.counter.darkblue .counter-value{ background: #001f3f; }
+.counter.darkblue .counter-icon{ background: linear-gradient(to right,#001f3f,#003366); }
+.counter.darkblue h3{ color: #003366; }
+
+.counter.aqua .counter-value{ background: #00ffff; }
+.counter.aqua .counter-icon{ background: linear-gradient(to right,#00ffff,#009999); }
+.counter.aqua h3{ color: #009999; }
+
+.counter.orange .counter-value{ background: #ff851b; }
+.counter.orange .counter-icon{ background: linear-gradient(to right,#ff851b,#cc6600); }
+.counter.orange h3{ color: #cc6600; }
+
+/* Qo'shimcha ranglar */
+.counter.purple .counter-value{ background: #800080; }
+.counter.purple .counter-icon{ background: linear-gradient(to right,#800080,#4b0082); }
+.counter.purple h3{ color: #4b0082; }
+
+.counter.teal .counter-value{ background: #008080; }
+.counter.teal .counter-icon{ background: linear-gradient(to right,#008080,#004d4d); }
+.counter.teal h3{ color: #004d4d; }
+
+.counter.yellow .counter-value{ background: #ffff00; }
+.counter.yellow .counter-icon{ background: linear-gradient(to right,#ffff00,#cccc00); }
+.counter.yellow h3{ color: #cccc00; }
+
+@media screen and (max-width:990px){
+    .counter{ margin-bottom: 40px; }
+
+        .block {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in {
+    animation: slideIn 0.8s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+        /**/
+
+
+@keyframes blink-cursor-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+    }
+    @keyframes blink-cursor11 {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    </style>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div class="wrapper">
+        <span class="item1 block"><div class="typewriter11" style="">
+    <span id="typewriter-text11"></span><span class="typewriter-cursor11" >|</span>
+  </div></span>
+        <div class="item3 block"> <div class="container">
+    <h1>Our Website Age</h1>
+    <div class="age-display">
+      <div class="time-unit slide-in">
+        <span id="years">0</span>
+        <span>Years</span>
+      </div>
+      <div class="time-unit slide-in">
+        <span id="months">0</span>
+        <span>Months</span>
+      </div>
+      <div class="time-unit slide-in">
+        <span id="days">0</span>
+        <span>Days</span>
+      </div>
+    </div>
+    <p class="subtext">Since our website was created</p>
+    <div class="creation-date">
+      <p data-key="created">Website created on: </p><span id="creation-date">2024-12-25</span>
+    </div>
+  </div></div>
+<div class="item4 block">
+    <h4 class="item3text" style=" font-family: 'Staatliches', cursive;
+
+  background: linear-gradient(45deg, #FFA500, #FF0000); /* Matn ichi gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 10px #FFA500, /* Oranj glow */
+    0 0 20px #FF0000; /* Qizil glow */
+ ;
+">Veb-sayt yaratish jarayonida har bir dasturlash tili uchun sarflangan vaqtni sekundlarda ko'rsatamiz. Umumiy vaqt esa 40 soatni tashkil etdi. ⏱</h4>
+    <div class="container " >
+        <div class="row  align-items-start">
+            <div class="col-md-4 col-sm-6" >
+                <div class="counter">
+                    <div class="counter-icon">
+                        <i class="fa fa-html5" ></i>
+                    </div>
+                    <h3>HTML</h3>
+                    <span class="counter-value" data-target="21850">0</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 " style="padding-left: 50px;">
+                <div class="counter green">
+                    <div class="counter-icon">
+                        <i class="fa fa-css3"></i>
+                    </div>
+                    <h3>CSS</h3>
+                    <span class="counter-value" data-target="24900">0</span>
+                </div>
+            </div>
+                        <div class="col-md-4 col-sm-6 " style="padding-left: 90px; padding-right: 50px;">
+                <div class="counter blue">
+                    <div class="counter-icon">
+                        <i class="fa fa-js"></i>
+                    </div>
+                    <h3>JavaScript</h3>
+                    <span class="counter-value" data-target="10300">0</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="row justify-content-center" style="margin-top: -50px;">
+    <div class="col-md-4 col-sm-6">
+                <div class="counter purple">
+                    <div class="counter-icon">
+<i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3>Django</h3>
+                    <span class="counter-value" data-target="23960">0</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 " style="padding-left: 70px;">
+                <div class="counter darkblue">
+                    <div class="counter-icon">
+                        <i class="fa fa-python"></i>
+                    </div>
+                    <h3>Python</h3>
+                    <span class="counter-value" data-target="15500">0</span>
+                </div>
+            </div>
+
+  </div>
+    </div>
+</div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </div>
+    {% else %}
+<!-- Variant 4: Animated border, rainbow effect -->
+<div>
+  <button id="button1" class="animated-btn rainbow-border"  onclick="window.location.href='{% url 'signup' %}'">
+    <span class="label">Start the journey</span>
+    <span class="border-anim"></span>
+  </button>
+</div>
+    {% endif %}
+
+
+    <script>
+          // First Typewriter (Green)
+const strings11 = [
+  "Salom, Men Azizbek Abdumajidov  Ushbu web sayt yaratuvchisi!👨🏼‍💻",
+  "Web saytimga tashrif buyurganingizdan minnatdorman.🙏🏻",
+  "Sayohatni boshladik! ☕ 👇"
+];
+
+
+// Second Typewriter (Welcome)
+function initTypewriterWelcome() {
+  const typewriterLines = document.querySelectorAll(".typewriter-welcome-line");
+  let currentLine = 0;
+
+  function startWelcomeAnimation() {
+    if (currentLine >= typewriterLines.length) {
+      setTimeout(() => {
+        typewriterLines.forEach(line => {
+          line.style.opacity = "0";
+          line.querySelector(".typewriter-welcome-cursor")
+              .classList.remove("typewriter-welcome-animation", "no-cursor-welcome");
+        });
+        currentLine = 0;
+        startWelcomeAnimation();
+      }, 5000);
+      return;
+    }
+
+    const line = typewriterLines[currentLine];
+    const cursor = line.querySelector(".typewriter-welcome-cursor");
+
+    line.style.opacity = "1";
+    cursor.classList.add("typewriter-welcome-animation");
+
+    setTimeout(() => {
+      cursor.classList.add("no-cursor-welcome");
+      currentLine++;
+      setTimeout(startWelcomeAnimation, 500);
+    }, 3000);
+  }
+
+  startWelcomeAnimation();
+}
+
+// Initialize both typewriters when DOM is loaded
+document.addEventListener("DOMContentLoaded", function() {
+  initTypewriter11();
+  initTypewriterWelcome();
+});
+
+// Add this to handle mobile devices
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+if (isMobile) {
+  document.documentElement.style.setProperty('--typing-speed', '0.05s');
+}
+                    const strings = [
+      "Salom, Men Azizbek Abdumajidov  Ushbu web sayt yaratuvchisi!👨🏼‍💻",
+      "Web saytimga tashrif buyurganingizdan minnatdorman.🙏🏻",
+      "Sayohatni boshladik! ☕ 👇"
+    ];
+    const el = document.getElementById('typewriter-text11');
+    const cursor = document.querySelector('.typewriter-cursor11');
+    const typeSpeed = 100, backSpeed = 80, gap = 1500, endGap = 1000;
+    let strIdx = 0, charIdx = 0, isTyping = true;
+
+    function typeLoop() {
+      if (isTyping) {
+        if (charIdx <= strings[strIdx].length) {
+          el.textContent = strings[strIdx].slice(0, charIdx);
+          charIdx++;
+          setTimeout(typeLoop, typeSpeed);
+        } else {
+          isTyping = false;
+          setTimeout(typeLoop, gap);
+        }
+      } else {
+        if (charIdx > 0) {
+          el.textContent = strings[strIdx].slice(0, charIdx - 1);
+          charIdx--;
+          setTimeout(typeLoop, backSpeed);
+        } else {
+          isTyping = true;
+          strIdx = (strIdx + 1) % strings.length;
+          setTimeout(typeLoop, endGap);
+        }
+      }
+    }
+    typeLoop();
+
+  /**/
+          document.addEventListener("DOMContentLoaded", function () {
+    // Counter Animation
+    const counters = document.querySelectorAll(".counter-value");
+    counters.forEach((counter) => {
+        const updateCount = () => {
+            const target = +counter.getAttribute("data-target"); // Use data-target for target value
+            const count = +counter.innerText;
+            const speed = 200; // Animation duration in milliseconds
+            const increment = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 10); // Update every 10ms
+            } else {
+                counter.innerText = target; // Ensure final value matches
+            }
+        };
+
+        updateCount();
+    });
+});
+
+          document.addEventListener("DOMContentLoaded", function () {
+    // Scroll Animation for Grid Items
+  const blocks = document.querySelectorAll('.block');
+
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5 // Trigger when 50% of the element is visible
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible'); // Show the visible block
+        } else {
+            entry.target.classList.remove('visible'); // Hide the block when it goes out of view
+        }
+    });
+}, observerOptions);
+
+blocks.forEach((block) => observer.observe(block));
+
+    // Typewriter Effect
+    const typewriterLines = document.querySelectorAll(".typewriter-line");
+    let currentLine = 0;
+
+    function startAnimation() {
+        if (currentLine >= typewriterLines.length) {
+            setTimeout(() => {
+                typewriterLines.forEach(line => {
+                    line.style.opacity = "0";
+                    line.querySelector(".cursor").classList.remove("typewriter-animation", "no-cursor");
+                });
+                currentLine = 0;
+                startAnimation();
+            }, 5000);
+            return;
+        }
+
+        const line = typewriterLines[currentLine];
+        const cursor = line.querySelector(".cursor");
+
+        line.style.opacity = "1";
+        cursor.classList.add("typewriter-animation");
+
+        setTimeout(() => {
+            cursor.classList.add("no-cursor");
+            currentLine++;
+            setTimeout(startAnimation, 500);
+        }, 3000);
+    }
+
+    startAnimation();
+
+    // Trigger animation for age display every time it appears
+    const ageDisplay = document.querySelector('.age-display');
+
+    const ageObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                updateAge(); // Trigger the random animation every time it appears
+            }
+        });
+    }, observerOptions);
+
+    if (ageDisplay) {
+        ageObserver.observe(ageDisplay);
+    }
+});
+
+// Set your website creation date here (YYYY-MM-DD format)
+const creationDate = new Date("2024-12-25");
+
+function animateValue(id, start, end, duration) {
+    const obj = document.getElementById(id);
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        obj.textContent = value;
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+function updateAge() {
+    const now = new Date();
+    const diff = now - creationDate;
+
+    // Calculate total days
+    const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    // Calculate years
+    const years = Math.floor(totalDays / 365);
+    let remainingDays = totalDays % 365;
+
+    // Calculate months
+    const months = Math.floor(remainingDays / 30);
+    remainingDays = remainingDays % 30;
+
+    // Calculate days
+    const days = remainingDays;
+
+    // Animate values with random starting points
+    animateValue("years", Math.floor(Math.random() * 10), years, 1000);
+    animateValue("months", Math.floor(Math.random() * 12), months, 1000);
+    animateValue("days", Math.floor(Math.random() * 30), days, 1000);
+
+    // Format creation date for display
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    document.getElementById(
+        "creation-date"
+    ).textContent = creationDate.toLocaleDateString("en-US", options);
+}
+
+
+
+$(document).ready(function(){
+    $('.counter-value').each(function(){
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        },{
+            duration: 3500,
+            easing: 'swing',
+            step: function (now){
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+});
+
+      /**/
+   </script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</body>
+</html>
+{% endblock content %}

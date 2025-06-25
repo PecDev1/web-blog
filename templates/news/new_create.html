@@ -1,0 +1,626 @@
+{% extends 'base.html' %}
+{% block header %}
+    {{ form.media }}
+    <style>
+        /* Base styles */
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .article-form-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(16, 22, 58, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .form-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .form-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+            margin: 30px 0;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #4facfe;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.4);
+            border-color: #4facfe;
+        }
+
+        /* CKEditor custom styling */
+        .django-ckeditor-widget {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .cke_top {
+            background: linear-gradient(to right, #1d2b64, #1d2b64) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding: 8px 10px !important;
+        }
+
+        .cke_toolgroup {
+            background: rgba(255, 255, 255, 0.12) !important;
+            border: none !important;
+            border-radius: 6px !important;
+            margin: 0 4px !important;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        .cke_combo_button {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: none !important;
+            border-radius: 6px !important;
+        }
+
+        .cke_combo_text {
+            color: #fff !important;
+        }
+
+        .cke_bottom {
+            background: rgba(29, 43, 100, 0.8) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding: 8px 10px !important;
+        }
+
+        .cke_path_item, .cke_resizer {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        .cke_contents {
+            background: rgba(0, 0, 0, 0.3) !important;
+            min-height: 300px !important;
+            border-radius: 0 0 12px 12px !important;
+        }
+
+        .cke_editable {
+            color: #fff !important;
+            font-size: 16px !important;
+            line-height: 1.7 !important;
+            padding: 20px !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        /* Summary field styling */
+        .summary-field {
+            min-height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            color: #fff;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            transition: all 0.3s ease;
+        }
+
+        .summary-field:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.4);
+            border-color: #4facfe;
+        }
+
+        /* Enhanced file upload button */
+        .file-upload-container {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-upload-label:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #4facfe;
+        }
+
+        .file-upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #4facfe;
+            transition: transform 0.3s ease;
+        }
+
+        .file-upload-label:hover .file-upload-icon {
+            transform: translateY(-5px);
+        }
+
+        .file-upload-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .file-upload-subtext {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .file-upload-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-preview-container {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .file-preview {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .file-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            color: #4facfe;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .file-size {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .remove-file {
+            background: rgba(255, 107, 107, 0.2);
+            border: none;
+            color: #ff6b6b;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .remove-file:hover {
+            background: rgba(255, 107, 107, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .submit-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .submit-btn {
+            padding: 16px 45px;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-illustration {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.08;
+            pointer-events: none;
+            font-size: 8rem;
+        }
+
+        .illustration-1 {
+            top: 20px;
+            right: 20px;
+        }
+
+        .illustration-2 {
+            bottom: 30px;
+            left: 30px;
+            transform: rotate(-20deg);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Floating labels effect */
+        .floating-label-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .floating-label {
+            position: absolute;
+            top: 16px;
+            left: 20px;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            padding: 0 5px;
+            background: transparent;
+        }
+
+        .form-control:focus ~ .floating-label,
+        .form-control:not(:placeholder-shown) ~ .floating-label {
+            top: -12px;
+            left: 15px;
+            font-size: 0.9rem;
+            color: #4facfe;
+            background: rgba(16, 22, 58, 0.9);
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            display: block;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .article-form-container {
+                padding: 25px 20px;
+                margin: 20px;
+            }
+
+            .form-header h2 {
+                font-size: 2rem;
+            }
+
+            .submit-section {
+                justify-content: center;
+            }
+
+            .submit-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="article-form-container">
+    <!-- Decorative icons -->
+    <div class="form-illustration illustration-1">
+        <i class="fas fa-feather-alt"></i>
+    </div>
+    <div class="form-illustration illustration-2">
+        <i class="fas fa-keyboard"></i>
+    </div>
+
+    <div class="form-header">
+        <h2>Create Your Article</h2>
+        <p>Share your knowledge and insights with our community. Craft a compelling story that engages and inspires readers.</p>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Title Field -->
+        <div class="form-group">
+            <div class="floating-label-group">
+                <input type="text" name="title" class="form-control" id="id_title" placeholder=" " value="{{ form.title.value|default:'' }}">
+                <span class="floating-label">Article Title</span>
+            </div>
+            {% if form.title.errors %}
+                <span class="error-message">{{ form.title.errors.0 }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Featured Image Upload -->
+        <div class="form-group">
+            <label>Featured Image</label>
+            <div class="file-upload-container">
+                <label class="file-upload-label" for="id_featured_image">
+                    <div class="file-upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="file-upload-text">Upload Featured Image</div>
+                    <div class="file-upload-subtext">PNG, JPG or GIF (Max: 5MB)</div>
+                    <input type="file" name="featured_image" id="id_featured_image" class="file-upload-input" accept="image/*">
+                </label>
+                <div class="file-preview-container" id="file-preview">
+                    <div class="file-preview">
+                        <div class="file-icon">
+                            <i class="fas fa-file-image"></i>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-name" id="file-name">No file selected</div>
+                            <div class="file-size" id="file-size">0 KB</div>
+                        </div>
+                        <button type="button" class="remove-file" id="remove-file">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% if form.featured_image.errors %}
+                <span class="error-message">{{ form.featured_image.errors.0 }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Summary Field -->
+        <div class="form-group">
+            <label for="id_summary">Article Summary</label>
+            <textarea name="summary" id="id_summary" class="summary-field" placeholder="Write a compelling summary of your article..." rows="6">{{ form.summary.value|default:'' }}</textarea>
+            {% if form.summary.errors %}
+                <span class="error-message">{{ form.summary.errors.0 }}</span>
+            {% endif %}
+            <div class="char-counter" style="text-align: right; margin-top: 8px; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">
+                <span id="summary-counter">0</span>/250 characters
+            </div>
+        </div>
+
+        <!-- Content Field -->
+        <div class="form-group">
+            <label for="id_content">Article Content</label>
+            {{ form.content }}
+            {% if form.content.errors %}
+                <span class="error-message">{{ form.content.errors.0 }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Other Fields -->
+        {% for field in form.visible_fields %}
+            {% if field.name != 'title' and field.name != 'content' and field.name != 'summary' and field.name != 'featured_image' %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    <div class="floating-label-group">
+                        {{ field }}
+                        <span class="floating-label">{{ field.label }}</span>
+                    </div>
+                    {% if field.errors %}
+                        <span class="error-message">{{ field.errors.0 }}</span>
+                    {% endif %}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="submit-section">
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Publish Article
+            </button>
+        </div>
+    </form>
+
+    <div class="form-footer">
+        <p>Need help? <a href="#" style="color: #4facfe;">View our writing guidelines</a></p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script>
+    // Initialize floating labels for all form fields
+    document.querySelectorAll('.form-control').forEach(input => {
+        const floatingLabel = input.nextElementSibling;
+
+        // Initialize position if field has value
+        if (input.value) {
+            floatingLabel.style.top = '-12px';
+            floatingLabel.style.left = '15px';
+            floatingLabel.style.fontSize = '0.9rem';
+            floatingLabel.style.color = '#4facfe';
+            floatingLabel.style.background = 'rgba(16, 22, 58, 0.9)';
+        }
+
+        // Add event listeners
+        input.addEventListener('focus', function() {
+            floatingLabel.style.top = '-12px';
+            floatingLabel.style.left = '15px';
+            floatingLabel.style.fontSize = '0.9rem';
+            floatingLabel.style.color = '#4facfe';
+            floatingLabel.style.background = 'rgba(16, 22, 58, 0.9)';
+        });
+
+        input.addEventListener('blur', function() {
+            if (!this.value) {
+                floatingLabel.style.top = '16px';
+                floatingLabel.style.left = '20px';
+                floatingLabel.style.fontSize = '1.05rem';
+                floatingLabel.style.color = 'rgba(255, 255, 255, 0.7)';
+                floatingLabel.style.background = 'transparent';
+            }
+        });
+    });
+
+    // Add character counter to title field
+    const titleInput = document.getElementById('id_title');
+    if (titleInput) {
+        const charCounter = document.createElement('div');
+        charCounter.style.color = 'rgba(255, 255, 255, 0.6)';
+        charCounter.style.fontSize = '0.9rem';
+        charCounter.style.marginTop = '8px';
+        charCounter.style.textAlign = 'right';
+        titleInput.parentElement.appendChild(charCounter);
+
+        titleInput.addEventListener('input', function() {
+            charCounter.textContent = `${this.value.length}/120 characters`;
+            if (this.value.length > 100) {
+                charCounter.style.color = '#ff7e5f';
+            } else {
+                charCounter.style.color = 'rgba(255, 255, 255, 0.6)';
+            }
+        });
+
+        // Initialize counter
+        if (titleInput.value) {
+            charCounter.textContent = `${titleInput.value.length}/120 characters`;
+        }
+    }
+
+    // Character counter for summary field
+    const summaryField = document.getElementById('id_summary');
+    const summaryCounter = document.getElementById('summary-counter');
+
+    if (summaryField) {
+        summaryField.addEventListener('input', function() {
+            const count = this.value.length;
+            summaryCounter.textContent = count;
+
+            if (count > 200) {
+                summaryCounter.style.color = '#ff7e5f';
+            } else {
+                summaryCounter.style.color = 'rgba(255, 255, 255, 0.6)';
+            }
+        });
+
+        // Initialize counter
+        summaryCounter.textContent = summaryField.value.length;
+    }
+
+    // File upload functionality
+    const fileInput = document.getElementById('id_featured_image');
+    const filePreview = document.getElementById('file-preview');
+    const fileName = document.getElementById('file-name');
+    const fileSize = document.getElementById('file-size');
+    const removeBtn = document.getElementById('remove-file');
+
+    fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            const file = this.files[0];
+            fileName.textContent = file.name;
+
+            // Format file size
+            const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+            fileSize.textContent = `${fileSizeMB} MB`;
+
+            filePreview.style.display = 'block';
+        } else {
+            filePreview.style.display = 'none';
+        }
+    });
+
+    removeBtn.addEventListener('click', function() {
+        fileInput.value = '';
+        filePreview.style.display = 'none';
+    });
+
+    // Form submission feedback
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+        const submitBtn = this.querySelector('.submit-btn');
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+        submitBtn.disabled = true;
+    });
+</script>
+{% endblock %}
+

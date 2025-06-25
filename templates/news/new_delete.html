@@ -1,0 +1,142 @@
+
+{% block content %}
+<style>
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0a0a2e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+    }
+
+    h1 {
+        color: #ffd700;
+        font-weight: 800;
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 30px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    #del_function {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: #16213e;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    .rating-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .post-title {
+        font-weight: 700;
+        color: #ff4d4d;
+        font-size: 2.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 10px;
+    }
+
+    .confirmation-text {
+        color: #e6e6e6;
+        font-size: 1.8rem;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .btn-primary {
+        background-color: #4ecca3;
+        color: #1a1a2e;
+        border: 2px solid #ffd700;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .btn-primary:hover {
+        background-color: #3cb391;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(78, 204, 163, 0.4);
+    }
+
+    .btn-danger {
+        background-color: #ff4d4d;
+        color: white;
+        border: 2px solid #ffd700;
+        box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);
+    }
+
+    .btn-danger:hover {
+        background-color: #e63939;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+    }
+
+    #del_function:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.2rem;
+        }
+        .post-title {
+            font-size: 2rem;
+        }
+        .confirmation-text {
+            font-size: 1.6rem;
+        }
+        .btn {
+            font-size: 1.2rem;
+            padding: 12px 24px;
+        }
+        #del_function {
+            padding: 25px;
+        }
+    }
+</style>
+
+<div id="del_function">
+    <h1>Postni o'chirish</h1>
+    <form action="" method="post">{% csrf_token %}
+        <div class="rating-container">
+            <p class="post-title">{{ news.title | title }}</p>
+            <p class="confirmation-text">nomli postni haqiqatdan ham o'chirishni istaysizmi?</p>
+        </div>
+        <div class="button-group">
+            <a href="{% url 'new_detail' news.pk %}" class="btn btn-primary">Yo'q</a>
+            <button class="btn btn-danger" type="submit">Ha</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

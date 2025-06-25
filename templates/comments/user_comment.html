@@ -1,0 +1,5 @@
+<form method="POST" action="{% url 'add_comment' news_id %}">
+    {% csrf_token %}
+    <textarea name="content" required></textarea>
+    <button type="submit">Add Comment</button>
+</form>

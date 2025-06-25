@@ -1,0 +1,12 @@
+
+<h2>Reply to {{ comment.author.username }}</h2>
+
+<form method="post">
+    {% csrf_token %} </div> {# Important: CSRF protection #}
+    {{ form.as_p }}
+    <button type="submit">Post Reply</button>
+</form>
+
+<a href="{{ request.META.HTTP_REFERER }}">Back</a> </div> {# Back button to return to the previous page #}
+
+

@@ -1,0 +1,1913 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock title %}
+{% block content %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/main_home.css' %}">
+    <title>About</title>
+    <style>
+
+.about-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0e7ff 0%, #fff8f0 100%);
+  border-radius: 24px;
+  box-shadow: 0 6px 48px 0 rgba(52, 67, 100, 0.09);
+  overflow: hidden;
+  margin: 40px auto 0 auto;
+  max-width: 1000px;
+  min-height: 400px;
+}
+
+.about-visual {
+  flex: 1 1 340px;
+  min-width: 340px;
+  position: relative;
+  background: linear-gradient(120deg, #6366f1 60%, #f59e42 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 340px;
+  filter: grayscale(0.3) contrast(1.1);
+  z-index: 1;
+}
+
+.about-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(99,102,241,0.6) 50%, rgba(245,158,66,0.4) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.about-content {
+  flex: 2 1 400px;
+  padding: 48px 40px 44px 40px;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #232946;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: .5px;
+}
+
+.about-lead {
+  font-size: 1.2rem;
+  color: #6366f1;
+  font-weight: 500;
+  margin-bottom: 1.7rem;
+}
+
+.about-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 30px;
+  margin-bottom: 1.5rem;
+}
+
+.about-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(99,102,241,0.06);
+  padding: 14px 18px;
+  border-radius: 12px;
+  min-width: 190px;
+  flex: 1 1 180px;
+  box-shadow: 0 2px 12px 0 rgba(99,102,241,0.05);
+  transition: background 0.2s;
+}
+.about-feature:hover {
+  background: rgba(99,102,241,0.12);
+}
+
+.about-feature i {
+  font-size: 1.7rem;
+  color: #6366f1;
+  margin-top: 3px;
+}
+
+.about-feature h4 {
+  margin: 0 0 3px 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: #232946;
+}
+
+.about-feature p {
+  color: #555;
+  margin: 0;
+  font-size: 0.97rem;
+}
+
+.about-description {
+  color: #444;
+  font-size: 1rem;
+  margin-top: .5rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 900px) {
+  .about-section {
+    flex-direction: column;
+    min-width: 0;
+  }
+  .about-visual {
+    min-width: 100%;
+    min-height: 200px;
+    max-height: 250px;
+    height: 220px;
+  }
+  .about-img {
+    min-height: 220px;
+    max-height: 250px;
+  }
+  .about-content {
+    padding: 32px 16px 24px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-section {
+    margin: 20px 5px 0 5px;
+    border-radius: 14px;
+  }
+  .about-content {
+    padding: 18px 6px 16px 6px;
+  }
+  .about-title {
+    font-size: 1.3rem;
+  }
+  .about-feature h4 {
+    font-size: 1rem;
+  }
+}
+
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+
+    :root {
+        --c1: #2187e7;
+        --b2: #222;
+        --b3: #333;
+        --w1: #fff;
+        --w2: #eee;
+        --t1: all 0.5s ease 0s;
+    }
+
+
+
+    .content {
+
+        width: 100svw;
+        height: 80vh;
+
+    }
+
+    .profile-skills {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 36px;
+        width: 100%;
+        margin: 0 auto 40px auto;
+        flex-wrap: nowrap;
+    }
+
+    .profile-skills > div {
+        width: 32%;
+        margin-right: 3%;
+        border-radius: 2px;
+        position: relative;
+        transition: transform 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .profile-skills > div:hover {
+        transform: scale(1.045);
+        z-index: 2;
+    }
+
+    ul.skills {
+        width: 100%;
+        position: relative;
+        padding: 25px 35px;
+        background: linear-gradient(0deg, var(--c1) 0 10px, var(--b2) 0 calc(100% - 10px), var(--c1) 0 100%);
+    }
+
+    ul.skills2 {
+        --c1: #9acd32;
+    }
+
+    ul.skills3 {
+        --c1: #ff4500;
+    }
+
+    ul.skills:before {
+  font-size: 30px;
+  letter-spacing: 4px; /* Harflar orasini 5 pikselga kengaytirish */
+
+            content: "✨";
+        text-transform: title;
+        position: absolute;
+        top: -75px;
+        height: 50px;
+        color: var(--w1);
+        background-color: var(--b2);
+        width: 100%;
+        left: 0;
+        padding: 15px 15px 0 0;
+        text-align: end;
+        font-weight: 600;
+        z-index: 1;
+        transition: var(--t1);
+        font-size: 40px;
+        line-height: 35px;
+        transform: scaleY(1.65);
+  }
+
+    ul.skills2:before {
+        content: "✨";
+    }
+
+    ul.skills3:before {
+        content: "✨";
+    }
+
+    ul.skills:after {
+        content: "";
+        position: absolute;
+        border: 40px solid #fff0;
+        border-top-color: var(--b2);
+        top: -30px;
+        left: 10px;
+        z-index: 0;
+        transition: var(--t1);
+        filter: drop-shadow(0 11px 0.1px var(--w1));
+    }
+
+    ul.skills:hover:before,
+    label:hover + ul.skills:before,
+    input:checked + label + ul.skills:before {
+        transition: var(--t1);
+        background-color: #2187e7;
+        background-position: 0 50%;
+    }
+
+    ul.skills:hover:after,
+    label:hover + ul.skills:after,
+    input:checked + label + ul.skills:after {
+        top: -20px;
+        transition: var(--t1);
+        border-top-color: #2187e7;
+    }
+
+    ul.skills2:hover:before,
+    label:hover + ul.skills2:before,
+    input:checked + label + ul.skills2:before {
+        background-color: #9acd32;
+    }
+
+    ul.skills2:hover:after,
+    label:hover + ul.skills2:after,
+    input:checked + label + ul.skills2:after {
+        border-top-color: #9acd32;
+    }
+
+    ul.skills3:hover:before,
+    label:hover + ul.skills3:before,
+    input:checked + label + ul.skills3:before {
+        background-color: #ff4500;
+    }
+
+    ul.skills3:hover:after,
+    label:hover + ul.skills3:after,
+    input:checked + label + ul.skills3:after {
+        border-top-color: #ff4500;
+    }
+
+    ul.skills li {
+        --per: 50;
+        --dur: calc(calc(var(--per) / 100) * 1.5s);
+        margin: 0 0 5px 0;
+        list-style: none;
+        padding: 20px 0;
+        position: relative;
+        text-transform: uppercase;
+        font-size: 15px;
+        color: var(--w2);
+    }
+
+    ul.skills li:before {
+        content: "";
+        position: absolute;
+        background: #1c1c1c;
+        height: 16px;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        border-radius: 2px;
+        border: 1px solid #111;
+        border-color: #111 #323232 #323232 #111;
+        --track: #2292dd40;
+        background: linear-gradient(
+            90deg,
+            var(--track) calc(calc(var(--per) * 1%) + 4px),
+            #1c1c1c calc(calc(var(--per) * 1%) + 4px)
+        );
+    }
+
+    ul.skills2 li:before {
+        --track: #9acd3240;
+    }
+
+    ul.skills3 li:before {
+        --track: #ff450040;
+    }
+
+    ul.skills li:after {
+        content: "";
+        height: 11px;
+        margin: 0 0 2px 0;
+        background: #2187e7;
+        position: absolute;
+        box-shadow: 0px 0px 10px 1px #00c6ff66;
+        left: 3px;
+        width: 0%;
+        bottom: 0;
+        transition: all var(--dur) ease 0s;
+        animation: start 1s ease 0s 2 alternate;
+    }
+
+    ul.skills2 li:after {
+        background: #9acd32;
+        box-shadow: 0px 0px 10px 1px #9acd3299;
+    }
+
+    ul.skills3 li:after {
+        background: #ff4500;
+        box-shadow: 0px 0px 10px 1px #ff450099;
+    }
+
+    ul.skills li:hover {
+        filter: brightness(1.5);
+        transition: var(--t1);
+    }
+
+    ul.skills:hover li:after,
+    label:hover + ul.skills li:after,
+    input:checked + label + ul.skills li:after {
+        width: calc(calc(var(--per) * 1%) - 2px);
+    }
+
+    @keyframes start {
+        100% {
+            width: calc(calc(var(--per) * 1%) - 2px);
+        }
+    }
+
+    ul.skills2 li:after {
+        animation-delay: 0.5s;
+    }
+    ul.skills3 li:after {
+        animation-delay: 1s;
+    }
+
+    ul.skills li span {
+        font-weight: 500;
+    }
+
+    ul.skills li span:before {
+        position: absolute;
+        right: -25px;
+        top: 43px;
+        transition: var(--t1);
+        content: "";
+        opacity: 1;
+        border: 7px solid #fff0;
+    }
+
+    ul.skills li:hover span:before,
+    .profile-skills input:checked + label + ul.skills li span:before {
+        transition: var(--t1);
+        right: calc(calc(calc(100 - var(--per)) * 1%) - 12px);
+        opacity: 1;
+        border-right-color: #2187e7;
+    }
+
+    ul.skills2 li:hover span:before,
+    .profile-skills input:checked + label + ul.skills2 li span:before {
+        border-right-color: #9acd32;
+    }
+
+    ul.skills3 li:hover span:before,
+    .profile-skills input:checked + label + ul.skills3 li span:before {
+        border-right-color: #ff4500;
+    }
+
+    ul.skills li span:after {
+        position: absolute;
+        right: -40px;
+        top: 38px;
+        transition: var(--t1);
+        counter-reset: percent var(--per);
+        content: counter(percent);
+        color: var(--b2);
+        opacity: 1 !important;
+        padding: 4px 6px;
+        border-radius: 1px;
+        font-weight: bold;
+        pointer-events: none;
+    }
+
+    ul.skills li:hover span:after,
+    .profile-skills input:checked + label + ul.skills li span:after {
+        transition: var(--t1);
+        right: calc(calc(85 - var(--per)) * 1%);
+        right: calc(calc(calc(100 - var(--per)) * 1%) - 40px);
+        opacity: 1;
+        background: var(--c1);
+    }
+
+    ul.skills2 li:hover span:after {
+        background: #9acd32;
+    }
+
+    ul.skills3 li:hover span:after {
+        background: #ff4500;
+    }
+
+    /* Skills Values */
+    ul.skills li.sk-ani { --per: 85; }
+    ul.skills li.sk-cms { --per: 75; }
+    ul.skills li.sk-dis { --per: 90; }
+    ul.skills li.sk-dtb { --per: 65; }
+    ul.skills li.sk-pro { --per: 60; }
+
+    ul.skills li.sk-gim { --per: 90; }
+    ul.skills li.sk-ado { --per: 60; }
+    ul.skills li.sk-not { --per: 85; }
+    ul.skills li.sk-tri { --per: 70; }
+    ul.skills li.sk-wor { --per: 90; }
+
+    ul.skills li.sk-css { --per: 95; }
+    ul.skills li.sk-htm { --per: 90; }
+    ul.skills li.sk-jav { --per: 70; }
+    ul.skills li.sk-php { --per: 80; }
+    ul.skills li.sk-sql { --per: 65; }
+
+    /* Top Labels */
+    .profile-skills input {
+        display: none;
+    }
+
+    .profile-skills label {
+        background: var(--w1);
+        position: absolute;
+        top: -61px;
+        left: 22px;
+        z-index: 2;
+        width: 55px;
+        height: 55px;
+        border-radius: 100%;
+        cursor: pointer;
+        transition: var(--t1);
+        box-shadow: 0 0 0 0 var(--w1);
+    }
+
+    .profile-skills label:before {
+        content: "";
+        background: #fff0;
+        position: absolute;
+        top: 12px;
+        left: 11px;
+        z-index: 2;
+        border: 9px solid var(--b2);
+        border-top-width: 0;
+        border-right-width: 0;
+        transform: rotate(-45deg);
+        width: 33px;
+        height: 22px;
+        border-radius: 2px;
+        transition: var(--t1);
+    }
+
+    .profile-skills label:hover {
+        box-shadow: 0 0 0 3px var(--w1);
+        transition: var(--t1);
+    }
+
+    .profile-skills label:hover:before {
+        border-color: var(--b2);
+        transition: var(--t1);
+    }
+
+    .profile-skills input:checked + label {
+        box-shadow: 0 0 0 6px var(--w1);
+        transition: var(--t1);
+    }
+
+    .profile-skills input:checked + label:before {
+        border-color: #2187e7;
+    }
+
+    .profile-skills input#sk2:checked + label:before {
+        border-color: #9acd32;
+    }
+
+    .profile-skills input#sk3:checked + label:before {
+        border-color: #ff4500;
+    }
+
+    label[for="sk1"]:before {
+        border-color: cornflowerblue;
+    }
+    label[for="sk2"]:before {
+        border-color: yellowgreen;
+    }
+    label[for="sk3"]:before {
+        border-color: orangered;
+    }
+
+    /* Bottom Labels */
+    ul.skills li.more {
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    ul.skills li.more:before,
+    ul.skills li.more:after {
+        display: none;
+    }
+
+    ul.skills li.more:hover {
+        filter: none !important;
+    }
+
+    ul.skills li.more div {
+        max-height: 0;
+        transition: var(--t1);
+        overflow: hidden;
+        padding: 0;
+        width: 100%;
+    }
+
+    ul.skills li.more input:checked ~ div {
+        max-height: 150px;
+        transition: var(--t1);
+        padding: 20px 0 0;
+    }
+
+    ul.skills li.more div span:before,
+    ul.skills li.more div span:after {
+        display: none;
+    }
+
+    ul.skills li.more label {
+        background: linear-gradient(163deg, var(--b2) 50%, var(--w1) 50%);
+        right: 0;
+        left: inherit;
+        top: inherit;
+        bottom: -70px;
+        color: var(--b2);
+        background-size: 100% 300%;
+        background-position-y: 100%;
+        transition: var(--t1);
+        width: 55px;
+        height: 55px;
+        right: -50px;
+    }
+
+    ul.skills li.more label:before {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        transform: rotate(0deg);
+        content: "+";
+        content: "\271A";
+        font-size: 45px;
+        line-height: 55px;
+        left: 0;
+        top: 0;
+        text-align: center;
+        color: var(--c1);
+    }
+
+    ul.skills li.more label:hover {
+        background-position-y: 0%;
+        color: var(--w1) !important;
+        transition: var(--t1);
+        box-shadow: 0 0 0 10px var(--w1);
+    }
+
+    ul.skills li.more span {
+        background: #1c1c1c;
+        border-radius: 1px;
+        margin: 10px 10px 1px 1px;
+        padding: 4px 8px;
+        display: inline-block;
+        border: 1px solid #111;
+        border-color: #111 #323232 #323232 #111;
+    }
+
+    ul.skills li.more span:hover {
+        color: var(--w0);
+        background: var(--c1);
+        box-shadow: 0px 0px 5px 1px var(--c1);
+        border-color: #fff2;
+    }
+
+    ul.skills li.more input:checked + label {
+        box-shadow: 0 0 0 9px var(--w1);
+        background-position-y: 0%;
+        color: var(--w0);
+        bottom: -70px;
+    }
+
+    ul.skills li.more input:checked + label:before {
+        content: "\2759";
+        transform: rotate(90deg);
+        font-weight: 600;
+    }
+
+    ul.skills li.more input:checked + label:hover {
+        box-shadow: 0 0 0 0 var(--w1);
+        background-position-y: 100%;
+        color: var(--b2) !important;
+    }
+
+    /* Media Queries */
+    @media only screen and (max-width: 1200px) {
+        .profile-skills {
+            flex-wrap: wrap;
+        }
+    }
+
+    @media only screen and (max-width: 900px) {
+        .profile-skills {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+        #PROJESTS
+.projects-container {
+    max-width: 450px; /* Changed from 900px to make it 50% narrower */
+    width: 90%; /* This makes it responsive */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.project-category {
+    margin-bottom: 20px;
+}
+
+.project-card {
+
+    width: 100%; /* Ensures cards take full width of their container */
+    /* ... keep all other existing styles ... */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.project-header {
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(26, 42, 108, 0.7), rgba(178, 31, 31, 0.7));
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.project-header:hover {
+    background: linear-gradient(135deg, rgba(26, 42, 108, 0.8), rgba(178, 31, 31, 0.8));
+}
+
+.project-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-icon {
+    font-size: 1.2rem;
+}
+
+.project-arrow {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.project-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.project-details {
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-links {
+    list-style: none;
+    padding: 0;
+}
+
+.project-links li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.project-links li:last-child {
+    border-bottom: none;
+}
+
+.project-link {
+    color: #1a2a6c;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.project-link:hover {
+    color: #b21f1f;
+    transform: translateX(5px);
+}
+
+/* Improved Tooltip Positioning */
+.project-link-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.project-status {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    font-size: 0.7rem;
+    background: rgba(178, 31, 31, 0.9);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.project-link:hover .project-status {
+    opacity: 1;
+    transform: translateY(-60%);
+}
+
+.project-note {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 6px;
+}
+
+.project-card.active .project-content {
+    max-height: 500px;
+    padding: 20px 0;
+}
+
+.project-card.active .project-details {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.project-card.active .project-arrow {
+    transform: rotate(180deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .projects-container {
+        padding: 15px;
+    }
+
+    .project-header {
+        padding: 12px 15px;
+    }
+
+    .project-title {
+        font-size: 1rem;
+    }
+
+    .project-status {
+        font-size: 0.6rem;
+        padding: 2px 6px;
+    }
+}
+        #NAVBAR
+#navbar {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tablinks {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 1.1rem;
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+.tablinks::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.tablinks:hover::before {
+    left: 100%;
+}
+
+.tablinks:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.tablinks.active {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+
+    .projects-container {
+        max-width: 90%; /* On mobile, it will take almost full width */
+        padding: 15px;
+    }
+
+
+    .tablinks {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+        .body1 {
+    opacity: 0;
+    transition: opacity 0.7s;
+}
+.body1.body1-visible {
+    opacity: 1;
+}
+
+   /* Navbar container */
+    #navbar {
+        display: flex;
+        gap: 12px;
+        padding: 20px 0;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        width: 100%;
+    }
+
+    /* Button styles - Gradient with floating animation */
+    .tablinks {
+        padding: 14px 30px;
+        border: none;
+        background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.3) 100%);
+        color: white;
+        font-weight: 600;
+        font-size: 17px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow:
+            0 4px 15px rgba(0,0,0,0.1),
+            0 1px 3px rgba(255,255,255,0.3) inset;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255,255,255,0.1);
+        transform: translateY(0);
+        animation: float 3s ease-in-out infinite;
+    }
+
+    /* Unique floating animation for each button */
+    .tablinks:nth-child(1) { animation-delay: 0.1s; }
+    .tablinks:nth-child(2) { animation-delay: 0.3s; }
+    .tablinks:nth-child(3) { animation-delay: 0.5s; }
+    .tablinks:nth-child(4) { animation-delay: 0.7s; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+
+    /* Button hover effect - More pronounced */
+    .tablinks:hover {
+        background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.4) 100%);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow:
+            0 8px 25px rgba(0,0,0,0.2),
+            0 2px 5px rgba(255,255,255,0.4) inset;
+    }
+
+    /* Active button style - Glowing effect */
+    .tablinks.active {
+        background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.5) 100%);
+        color: #fff;
+        text-shadow: 0 0 5px rgba(255,255,255,0.8);
+        box-shadow:
+            0 0 15px rgba(255,255,255,0.6),
+            0 3px 8px rgba(255,255,255,0.3) inset;
+        animation: none;
+        transform: translateY(-5px);
+    }
+
+    /* Button underline animation - More visible */
+    .tablinks::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 3px;
+        background: rgba(255,255,255,0.8);
+        border-radius: 3px 3px 0 0;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    .tablinks.active::after {
+        width: 70%;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 0 10px rgba(255,255,255,0.8);
+    }
+
+    /* Ripple effect on click */
+    .tablinks::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255,255,255,0.4);
+        opacity: 0;
+        border-radius: 100%;
+        transform: scale(1, 1) translate(-50%);
+        transform-origin: 50% 50%;
+        transition: all 0.6s ease-out;
+    }
+
+    .tablinks:active::before {
+        opacity: 1;
+        transform: scale(50, 50) translate(-50%);
+    }
+
+    /* Responsive design - Adjusted for better mobile view */
+    @media (max-width: 768px) {
+        #navbar {
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+        }
+
+        .tablinks {
+            padding: 12px 20px;
+            font-size: 15px;
+            flex: 1 0 calc(50% - 20px);
+            min-width: 0;
+            animation: none !important;
+        }
+
+        .tablinks:hover {
+            transform: translateY(-2px) scale(1.03);
+        }
+    }
+        /* Tab content uchun animatsiya */
+.tabcontent {
+    animation: fadeEffect 0.5s;
+    display: none;
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Active tab uchun animatsiya */
+.tablinks {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tablinks.active {
+    position: relative;
+}
+
+.tablinks.active::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 3px;
+    animation: underline 0.3s ease-out;
+}
+
+@keyframes underline {
+    from { width: 0; }
+    to { width: 80%; }
+}
+
+/* Tab content uchun asosiy stil */
+.tabcontent {
+    display: none;
+    animation: fadeIn 0.5s forwards;
+}
+
+        /* education css */
+
+        .education-accordion {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.education-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.education-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.education-header {
+    padding: 20px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(26, 42, 108, 0.8), rgba(178, 31, 31, 0.8));
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.education-header:hover {
+    background: linear-gradient(135deg, rgba(26, 42, 108, 0.9), rgba(178, 31, 31, 0.9));
+}
+
+.education-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.education-icon {
+    font-size: 1.5rem;
+}
+
+.education-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.education-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.education-details {
+    padding: 0 25px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.education-item.active .education-content {
+    max-height: 1000px;
+    padding: 25px 0;
+}
+
+.education-item.active .education-details {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.education-item.active .education-arrow {
+    transform: rotate(180deg);
+}
+
+.school-info {
+    margin-bottom: 20px;
+}
+
+.school-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a2a6c;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.school-badge {
+    background: #1a2a6c;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.study-section, .honors-section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #b21f1f;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.study-list, .honors-list {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.study-list li, .honors-list li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.study-list li:before, .honors-list li:before {
+    content: "•";
+    color: #1a2a6c;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.emoji {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+    </style>
+</head>
+<body>
+
+    {% if user.is_authenticated %}
+    <div class="body1">
+          <div id="navbar-container">
+        <!-- HTML structure -->
+<div id="navbar" class="tab">
+    <button class="tablinks active" onclick="openSection(event, 'Education')" data-key="education">Education</button>
+    <button class="tablinks" onclick="openSection(event, 'Projects')" data-key="projects">Projects</button>
+    <button class="tablinks" onclick="openSection(event, 'Skills')" data-key="skills">Skills</button>
+    <button class="tablinks" onclick="openSection(event, 'About')" data-key="about_blog">About web blog</button>
+</div>
+    </div>
+
+        <div id="Education" class="tabcontent">
+    <div class="education-accordion">
+        <!-- Primary Education -->
+        <div class="education-item" onclick="toggleEducation(this)">
+            <div class="education-header">
+                <h3 class="education-title" data-key="edu1">
+                    <span class="education-icon">🏫</span>
+                    Primary Education
+                </h3>
+                <span class="education-arrow">▼</span>
+            </div>
+            <div class="education-content">
+                <div class="education-details">
+                    <div class="school-info">
+                        <h4 class="school-name">
+                            <span class="school-badge">1</span>
+                            Jizzax viloyati, Baxmal tumani 27-sonli umumiy o'rta ta'lim maktabi
+                        </h4>
+                    </div>
+
+                    <div class="study-section">
+                        <h5 class="section-title">
+                            <span>📚</span>
+                            Study
+                        </h5>
+                        <ul class="study-list">
+                            <li>Barcha o'rta maktab fanlari</li>
+                            <li>Ba'zi sport turlari</li>
+                        </ul>
+                    </div>
+
+                    <div class="honors-section">
+                        <h5 class="section-title">
+                            <span>🏆</span>
+                            Honors & Achievements
+                        </h5>
+                        <ul class="honors-list">
+                            <li><span class="emoji">🥇</span> Matematika fanidan bir necha marta olimpiada g'olibi</li>
+                            <li><span class="emoji">📖</span> Yosh kitobxon ko'rik tanlovi ishtirokchisi</li>
+                            <li><span class="emoji">♟️</span> Maktab shaxmatchilari klubi a'zosi</li>
+                            <li><span class="emoji">✨</span> Va boshqa bir qancha yutuqlar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lyceum -->
+        <div class="education-item" onclick="toggleEducation(this)">
+            <div class="education-header">
+                <h3 class="education-title" data-key="edu2">
+                    <span class="education-icon" >🎓</span>
+                    Lyceum
+                </h3>
+                <span class="education-arrow">▼</span>
+            </div>
+            <div class="education-content">
+                <div class="education-details">
+                    <div class="school-info">
+                        <h4 class="school-name">
+                            <span class="school-badge">2</span>
+                            Jizzax Shahar 1-sonli IMI
+                        </h4>
+                    </div>
+
+                    <div class="study-section">
+                        <h5 class="section-title">
+                            <span>📚</span>
+                            Study
+                        </h5>
+                        <ul class="study-list">
+                            <li>Mathematics</li>
+                            <li>CEFR</li>
+                            <li>Python</li>
+                            <li>Physics</li>
+                        </ul>
+                    </div>
+
+                    <div class="honors-section">
+                        <h5 class="section-title">
+                            <span>🏆</span>
+                            Honors & Achievements
+                        </h5>
+                        <ul class="honors-list">
+                            <li>Maktab zakovat intellektual o'yini jamoasi a'zosi</li>
+                            <li>Bir nechta bor maktab va hudud bosqichi g'olibi</li>
+                            <li>Va yana ko'plab honourlar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bachelor -->
+        <div class="education-item" onclick="toggleEducation(this)">
+            <div class="education-header">
+                <h3 class="education-title"  data-key="edu3">
+                    <span class="education-icon">🎓</span>
+                    Bachelor
+                </h3>
+                <span class="education-arrow">▼</span>
+            </div>
+            <div class="education-content">
+                <div class="education-details">
+                    <p data-key="soon">coming soon</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Magistracy -->
+        <div class="education-item" onclick="toggleEducation(this)">
+            <div class="education-header">
+                <h3 class="education-title" data-key="edu4">
+                    <span class="education-icon">🎓</span>
+                    Magistracy
+                </h3>
+                <span class="education-arrow">▼</span>
+            </div>
+            <div class="education-content">
+                <div class="education-details">
+                    <p data-key="soon">coming soon</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <div id="About" class="tabcontent">
+  <section class="about-section">
+    <div class="about-visual">
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="About illustration" class="about-img">
+      <div class="about-overlay"></div>
+    </div>
+    <div class="about-content">
+      <h2 class="about-title"><i class="fas fa-info-circle"></i> About This Site</h2>
+      <p class="about-lead">
+        Welcome to our modern web blog! Here, you’ll find insightful articles, the latest news, and a vibrant community of learners and creators.
+      </p>
+      <div class="about-features">
+        <div class="about-feature">
+          <i class="fas fa-bolt"></i>
+          <div>
+            <h4>Modern Design</h4>
+            <p>Experience a clean, fast, and responsive interface built for all devices and users.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <i class="fas fa-users"></i>
+          <div>
+            <h4>Community Focused</h4>
+            <p>Join discussions, comment on posts, and connect with like-minded individuals.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <i class="fas fa-shield-alt"></i>
+          <div>
+            <h4>Secure & Reliable</h4>
+            <p>Your data and privacy are our top priority, using the latest web standards.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-description">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora explicabo hic assumenda commodi, voluptate, enim nulla magni impedit illum, mollitia praesentium provident dolor! Quibusdam, dolorem? Quidem, dolorum. Quod, vero blanditiis?</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias, sit. Voluptate natus dignissimos quo, asperiores ab labore, fugit, laudantium magni doloribus repellendus qui ex. Ipsam suscipit porro nulla laboriosam voluptates!</p>
+      </div>
+    </div>
+  </section>
+</div>
+        <div id="Projects" class="tabcontent">
+    <div class="projects-container" style="width:80%; padding-left: 20%;">
+        <h3 style="text-align: center; margin-bottom: 25px; color: #1a2a6c; font-size: 1.4rem;">My Projects</h3>
+
+        <!-- Web Projects -->
+        <div class="project-category">
+            <div class="project-card" onclick="toggleProject(this)">
+                <div class="project-header" data-key="project1">
+                    <h3 class="project-title">
+                       🌐  Web Projects
+                    </h3>
+                    <span class="project-arrow">▼</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-details">
+                        <ul class="project-links">
+    <li>
+        <a href="D:\Colab\html_projects\html_islam_project\main.html" target="_blank" class="project-link">
+            <span class="project-link-tooltip">
+                Islam_Uz
+                <span class="project-status">In Development</span>
+            </span>
+        </a>
+
+                            <li>
+                                <a href="" class="project-link">
+                                    My Blog
+                                    <span class="project-status">Coming Soon</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Telegram Bots -->
+        <div class="project-category">
+            <div class="project-card" onclick="toggleProject(this)">
+                <div class="project-header" data-key="project2">
+                    <h3 class="project-title">
+                    🤖  Telegram Bots
+                    </h3>
+                    <span class="project-arrow">▼</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-details">
+                        <ul class="project-links">
+                            <li>
+                                <a href="" target="_blank" class="project-link">
+                                    ImloUz
+                                    <span class="project-status">Planned</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="project-link">
+                                    Translator
+                                    <span class="project-status">Planned</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="project-link">
+                                    SonTop
+                                    <span class="project-status">Planned</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="project-link">
+                                    Study Center
+                                    <span class="project-status">Planned</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="project-link">
+                                    Koran reading
+                                    <span class="project-status">Planned</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="project-note">
+                            <i>P.S: Eslatib o'tamiz bu botlar hali serverga yuklanmagan va hozida ishlamaydi. Tez kunlarda birin ketin ushbu botlarning manzillari beriladi. Bu haqida to'liq ma'lumotni ushbu sayt yoki <a href="https://t.me/pec_dev" target="_blank" style="color: #1a2a6c; font-weight: 500;">PecDev</a> kanali orqali bilib olishingiz mumkin. E'tiboringiz uchun rahmat!</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Projects -->
+        <div class="project-category">
+            <div class="project-card" onclick="toggleProject(this)">
+                <div class="project-header">
+                    <h3 class="project-title" data-key="project3">
+                    💻  Other Useful Programs
+                    </h3>
+                    <span class="project-arrow">▼</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-details">
+                        <ul class="project-links">
+                            <li>
+                                <a href="https://t.me/pec_dev" target="_blank" class="project-link">
+                                    PecDev Channel
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <div id="Skills" class="tabcontent">
+            <div class="content">
+                <div class="profile-skills" style="padding-top: 100px;" >
+                    <div >
+                        <input type="checkbox" id="sk1">
+                        <label for="sk1">  </label>
+                        <ul class="skills skills1">
+                            <li class="sk-cms " ><span> Adobe </span></li>
+                            <li class="sk-dtb"><span>Canva</span></li>
+                            <li class="sk-dis"><span>Monkeytype</span></li>
+                            <li class="sk-pro"><span> Telegram bot </span></li>
+                            <li class="sk-ani"><span>Games</span></li>
+                            <li class="more">
+                                <input type="checkbox" id="more-con"><label for="more-con"></label>
+                                <div><span>Responsible</span><span>Creative</span><span>universal</span><span>creator</span><span>reliable</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="sk3">
+                        <label for="sk3"></label>
+                        <ul class="skills skills3">
+                            <li class="sk-css"><span>CSS</span></li>
+                            <li class="sk-htm"><span>HTML</span></li>
+                            <li class="sk-jav"><span>JS</span></li>
+                            <li class="sk-php"><span>Python</span></li>
+                            <li class="sk-sql"><span>Django</span></li>
+                            <li class="more">
+                                <input type="checkbox" id="more-len"><label for="more-len"></label>
+                                <div><span>CMD</span><span>MySQL</span><span>Bootstrap</span><span>JSON</span><span>Canva</span><span>API</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="sk2">
+                        <label for="sk2"></label>
+                        <ul class="skills skills2">
+                            <li class="sk-gim"><span>Uzbek</span></li>
+                            <li class="sk-ado"><span>English</span></li>
+                            <li class="sk-not"><span>Turkish</span></li>
+                            <li class="sk-tri"><span>♟Chess</span></li>
+                            <li class="sk-wor"><span>Maths</span></li>
+                            <li class="more">
+                                <input type="checkbox" id="more-pro"><label for="more-pro"></label>
+                                <div><span>Workout</span><span></span><span></span><span></span><span></span><span></span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center">
+        <p class="mb-4">Assalomu alaykum, PecDev Blogiga xush kelibsiz. Saytimizdan to'liq foydalanish uchun ro'yxatdan o'ting.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'login' %}" class="btn btn-outline-info">Kirish</a>
+            <a href="{% url 'signup' %}" class="btn btn-outline-warning">Ro'yxatdan o'tish</a>
+        </div>
+    </div>
+    {% endif %}
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+
+        // No specific JS is required for static About section.
+// If you want to animate on scroll (AOS) or similar, you can add a fade-in effect:
+document.addEventListener("DOMContentLoaded", function() {
+  const aboutSec = document.querySelector('.about-section');
+  if (aboutSec) {
+    aboutSec.style.opacity = 0;
+    aboutSec.style.transform = "translateY(40px)";
+    setTimeout(() => {
+      aboutSec.style.transition = "all 0.7s cubic-bezier(.4,2,.4,1)";
+      aboutSec.style.opacity = 1;
+      aboutSec.style.transform = "translateY(0)";
+    }, 100);
+  }
+});
+
+
+        function toggleProject(card) {
+    // Close all other project cards in the same category
+    const category = card.closest('.project-category');
+    const allCards = category.querySelectorAll('.project-card');
+    allCards.forEach(el => {
+        if (el !== card) {
+            el.classList.remove('active');
+        }
+    });
+
+    // Toggle current card
+    card.classList.toggle('active');
+}
+        function toggleEducation(item) {
+    // Close all other accordion items
+    const allItems = document.querySelectorAll('.education-item');
+    allItems.forEach(el => {
+        if (el !== item) {
+            el.classList.remove('active');
+        }
+    });
+
+    // Toggle current item
+    item.classList.toggle('active');
+}
+ function openSection(evt, sectionName) {
+    // 1. Hozirgi tabni yopish animatsiyasi
+    const currentActiveTab = document.querySelector('.tabcontent[style*="display: block"]');
+    if (currentActiveTab) {
+        currentActiveTab.style.animation = 'fadeOut 0.3s forwards';
+        setTimeout(() => {
+            currentActiveTab.style.display = "none";
+        }, 300);
+    }
+
+    // 2. Barcha tugmalardan active klassini olib tashlash
+    const tablinks = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    // 3. Yangi tabni ochish
+    const newTab = document.getElementById(sectionName);
+    newTab.style.display = "block";
+    newTab.style.opacity = "0";
+    newTab.style.animation = 'fadeIn 0.5s forwards';
+
+    // 4. Bosilgan tugmaga active klassini qo'shish
+    evt.currentTarget.classList.add("active");
+
+    // 5. Tugma bosilganda effekt
+    evt.currentTarget.style.transform = "scale(0.95)";
+    setTimeout(() => {
+        evt.currentTarget.style.transform = "scale(1)";
+    }, 200);
+
+    // 6. Mobil menyuni yopish
+    if (window.innerWidth <= 768) {
+        document.getElementById('navbar').classList.remove('show');
+    }
+}
+
+          // Toggle navbar on mobile
+    function toggleNavbar() {
+        const navbar = document.getElementById('navbar');
+        navbar.classList.toggle('show');
+    }
+
+    // Update section indicator position
+    function updateIndicator(activeTab) {
+        const indicator = document.querySelector('.section-indicator');
+        const tabRect = activeTab.getBoundingClientRect();
+        const navbarRect = document.getElementById('navbar').getBoundingClientRect();
+
+        indicator.style.width = tabRect.width + 'px';
+        indicator.style.left = (tabRect.left - navbarRect.left) + 'px';
+    }
+
+    // Open section with animation
+    function openSection(evt, sectionName) {
+        // Hide all tabcontent
+        const tabcontent = document.getElementsByClassName("tabcontent");
+        for (let i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Remove active class from all tablinks
+        const tablinks = document.getElementsByClassName("tablinks");
+        for (let i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show current tab and add active class
+        document.getElementById(sectionName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+        // Update section indicator
+        updateIndicator(evt.currentTarget);
+
+        // Close mobile menu if open
+        if (window.innerWidth <= 768) {
+            document.getElementById('navbar').classList.remove('show');
+        }
+    }
+
+    // Initialize first tab as active
+    document.addEventListener("DOMContentLoaded", function() {
+        const firstTab = document.querySelector('#navbar .tablinks');
+        if (firstTab) {
+            firstTab.click();
+        }
+
+        // Update indicator on resize
+        window.addEventListener('resize', function() {
+            const activeTab = document.querySelector('#navbar .tablinks.active');
+            if (activeTab) {
+                updateIndicator(activeTab);
+            }
+        });
+    });
+
+        // .body1 ga animatsion class qo'shish (masalan, sahifa yuklanganda)
+document.addEventListener("DOMContentLoaded", function() {
+    var body1 = document.querySelector('.body1');
+    if (body1) {
+        body1.classList.add('body1-visible');
+    }
+});
+    (function(){
+        var d = document,
+        accordionToggles = d.querySelectorAll('.js-accordionTrigger'),
+        setAria,
+        setAccordionAria,
+        switchAccordion,
+        touchSupported = ('ontouchstart' in window),
+        pointerSupported = ('pointerdown' in window);
+
+        skipClickDelay = function(e){
+            e.preventDefault();
+            e.target.click();
+        }
+
+        setAriaAttr = function(el, ariaType, newProperty){
+            el.setAttribute(ariaType, newProperty);
+        };
+        setAccordionAria = function(el1, el2, expanded){
+            switch(expanded) {
+                case "true":
+                    setAriaAttr(el1, 'aria-expanded', 'true');
+                    setAriaAttr(el2, 'aria-hidden', 'false');
+                    break;
+                case "false":
+                    setAriaAttr(el1, 'aria-expanded', 'false');
+                    setAriaAttr(el2, 'aria-hidden', 'true');
+                    break;
+                default:
+                    break;
+            }
+        };
+    //function
+    switchAccordion = function(e) {
+        console.log("triggered");
+        e.preventDefault();
+        var thisAnswer = e.target.parentNode.nextElementSibling;
+        var thisQuestion = e.target;
+        if(thisAnswer.classList.contains('is-collapsed')) {
+            setAccordionAria(thisQuestion, thisAnswer, 'true');
+        } else {
+            setAccordionAria(thisQuestion, thisAnswer, 'false');
+        }
+        thisQuestion.classList.toggle('is-collapsed');
+        thisQuestion.classList.toggle('is-expanded');
+        thisAnswer.classList.toggle('is-collapsed');
+        thisAnswer.classList.toggle('is-expanded');
+
+        thisAnswer.classList.toggle('animateIn');
+    };
+    for (var i=0,len=accordionToggles.length; i<len; i++) {
+        if(touchSupported) {
+            accordionToggles[i].addEventListener('touchstart', skipClickDelay, false);
+        }
+        if(pointerSupported){
+            accordionToggles[i].addEventListener('pointerdown', skipClickDelay, false);
+        }
+        accordionToggles[i].addEventListener('click', switchAccordion, false);
+    }
+    })();
+
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
+    // Get the button
+    let mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    document.getElementById("clickable-name").addEventListener("click", function() {
+        var img = document.getElementById("myImage");
+
+        // Show the image
+        img.style.display = "block";
+
+        // Set a timeout to hide the image after 4 seconds
+        setTimeout(function() {
+            img.style.display = "none";
+        }, 1000);
+    });
+
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Show Skills section by default when page loads
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the Skills tab and simulate a click
+        var skillsTab = document.querySelector('[onclick*="Skills"]');
+        if (skillsTab) {
+            var event = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true
+            });
+            skillsTab.dispatchEvent(event);
+        }
+    });
+        function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Sahifa yuklanganda birinchi bo'limni ko'rsatish uchun:
+document.addEventListener("DOMContentLoaded", function() {
+    var firstTab = document.querySelector('#navbar .tablinks');
+    if (firstTab) {
+        firstTab.click();
+    }
+});
+    </script>
+</body>
+</html>
+{% endblock content %}

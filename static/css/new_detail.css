@@ -1,0 +1,119 @@
+
+.container-fluid2 {
+    max-width: 1000px; /* Set a maximum width for the container */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 1rem; /* Add some padding around the container */
+}
+
+.card {
+    margin-bottom: 1rem; /* Space between cards */
+}
+
+.card-img-top {
+border-radius:1%;
+    max-height: 800px; /* Limit the height of the image */
+    max-width: 750px; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+.card2 {
+    max-height: 9rem; /* Decrease the max-height for a smaller card */
+    max-width: 9rem;
+
+
+    background: white;
+    margin: 0 0rem; /* Increase left margin to shift it more to the left */
+    padding: 0.5rem; /* Adjust padding for smaller content */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+}
+
+.star {
+    cursor: pointer; /* Change cursor to pointer for clickable stars */
+    font-size: 1.5rem; /* Adjust star size */
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+
+
+.one {
+color: rgb(255, 0, 0);
+}
+
+.two {
+color: rgb(255, 106, 0);
+}
+
+.three {
+color: rgb(251, 255, 120);
+}
+
+.four {
+color: rgb(255, 255, 0);
+}
+
+.five {
+color: rgb(24, 159, 14);
+}
+.card1 { background-color: #7cb9e8; }
+    .comment {
+        border-radius: 10px;
+        background-color: #e7feff;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+    .comment-header { margin-bottom: 5px; }
+    .comment-author {
+        padding-left: 5px;
+        font-size: 1.1rem;
+    }
+    .comment-content {
+        padding-left: 10px;
+        font-style: italic;
+        white-space: pre-line;
+    }
+    .comment-date { font-size: 0.9rem; }
+    .container-fluid2 {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    .message {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        background-color: #90ee90;
+        border-radius: 5px;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .star-rating {
+        direction: rtl;
+        display: inline-flex;
+        gap: 5px;
+    }
+    .star {
+        cursor: pointer;
+        font-size: 24px;
+        color: #ccc;
+        transition: color 0.2s;
+    }
+    .star:hover,
+    .star:hover ~ .star,
+    .star.selected,
+    .star.selected ~ .star { color: #ffd700; }
+    .like-btn, .dislike-btn {
+        cursor: pointer;
+        padding: 5px;
+    }
+    .liked { color: green; }
+    .disliked { color: red; }

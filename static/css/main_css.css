@@ -1,0 +1,330 @@
+
+        html, body {
+  height: 100%;
+  margin: 0;
+}
+        .bg-image {
+
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+
+  /* To ensure the background covers the entire screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1; /* Send the background behind other content */
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid white; /* Thin white circle */
+  position: absolute; /* Positioning at the top left */
+  top: 27px; /* Adjust as needed */
+  left: 35px; /* Adjust as needed */
+  background-color: transparent; /* Ensure background is transparent */
+  object-fit: cover; /* Maintain aspect ratio for image */
+}
+.sidenav{
+
+    background-color: #000036;
+ }
+
+
+.bar12, .bar22, .bar32 {
+            width: 35px;
+            height: 5px;
+            background-color: white;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .change .bar1 {
+            transform: translate(0, 11px) rotate(-45deg);
+        }
+
+        .change .bar2 {
+            opacity: 0;
+        }
+
+        .change .bar3 {
+            transform: translate(0, -11px) rotate(45deg);
+        }
+
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {box-sizing: border-box;}
+        body {
+            font-family: "Roboto", sans-serif;
+            font-size: 18px;
+            overflow-x: hidden;
+            padding: 25px;
+            background-color: white;
+            color: black;
+        }
+
+
+.dropdown {
+    display: flex;
+    align-items: center; /* Vertikal markazlash */
+}
+
+
+
+.checkbox-label {
+  background-color: #111;
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-moon {color: #f1c40f;}
+
+.fa-sun {color: #f39c12;}
+
+.checkbox-label .ball {
+  background-color: #fff;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+  transform: translateX(24px);
+}
+
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.7s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+        }
+
+        .navbar {
+            background-color: #F4B41A;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+
+        main {
+            padding: 40px 25px;
+            transition: .5s ease-in-out;
+            width: 100%;
+        }
+
+        nav {
+            background: #36a;
+            bottom: 0;
+            box-shadow: 0 0 5px #666;
+            height: 100%;
+            left: -17.5rem;
+            padding-top: 38px;
+            position: absolute;
+            top: 0;
+            transition: .5s ease-in-out;
+            width: 17rem;
+            user-select: none;
+        }
+
+        nav a {
+            color: #eee;
+            display: block;
+            padding: 12px 16px;
+            transition: .5s;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #39c;
+        }
+
+        #nav-expand {
+            background-color: #33;
+            color: #eee;
+            display: block;
+            left: 0;
+            top: 0;
+            padding: 8px 12px;
+            position: absolute;
+            text-decoration: none;
+            transition: .5s linear;
+            user-select: none;
+        }
+
+        #nav-expand:hover {
+            background-color: #369;
+            color: #fff;
+        }
+
+        .icon {
+            display: inline-block;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 12px;
+            width: 12px;
+        }
+        .icon-cross {
+            background-image: url('data:image/png;base64,...'); /* Your base64 image here */
+        }
+
+        .icon-menu {
+            background-image: url('data:image/png;base64,...'); /* Your base64 image here */
+        }
+
+.bg-dark-custom {
+
+    background-color: #343a40; /* Dark background */
+}
+
+.text-light-custom {
+    color: #ffffff; /* Light text color */
+}
+
+
+
+
+
+
+           .me-3 {
+    margin-right: 10rem; /* Adjust this value as needed */
+}
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=SUSE:wght@100..800&display=swap');
+
+body{
+  background-color: #212121;
+}
+h1{
+  color: #fff;
+  text-align:center;
+  font-family:"SUSE", sans-serif;
+  font-size: 20px;
+  margin-top: 100px;
+}
+
+h3{
+  color: #fff;
+  text-align:center;
+  font-family:"Nunito", sans-serif;
+  font-size: 18px;
+  margin-top: 20px;
+  font-style: normal;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+#button {
+  position: relative;
+  display: block;
+  width: 90px;
+  height: 35px;
+  background-color: #b80404;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 10px auto;
+  transition: background-color 0.3s ease;
+}
+
+#knob {
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  position: absolute;
+  top: 6px;
+
+  left: 6px;
+  transform: translateX(-1%);
+
+  border-radius: 50%;
+  transition: 0.4s ease left, 0.4s ease background-color;
+  background-image: url(https://i.hizliresim.com/ltsw1d9.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+#language-text {
+  position: absolute;
+  top:53%;
+  left: 37px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: color 0.4s ease, left 0.4s ease;;
+}
+
+#language-toggle:checked + #button {
+  background-color: #0d1366;
+}
+
+#language-toggle:checked + #button #knob {
+  left: 60px;
+  background-color: #ffffff;
+  background-image: url(https://m.media-amazon.com/images/I/61dHFpZmRSL._AC_UF1000,1000_QL80_.jpg);
+}
+
+#language-toggle:checked + #button #language-text {
+  color: #ffffff;
+  left: 15px;
+  transition: left 0.4s ease;
+}
+
+/* Follow Me :) */

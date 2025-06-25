@@ -1,0 +1,575 @@
+{% extends 'base.html' %}
+
+{% block title %}Yangiliklar{% endblock title %}
+
+{% block content %}
+{% load static %}
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #4361ee;
+            --dark: #0f172a;
+            --light: #f8f9fa;
+            --navbar-height: 60px;
+            --card-bg: rgba(15, 23, 42, 0.75);
+        }
+
+
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .news-page {
+            position: relative;
+            min-height: 100vh;
+            padding-top: var(--navbar-height);
+        }
+
+        .page-title {
+            text-align: center;
+            padding: 50px 20px 30px;
+            margin-bottom: 20px;
+        }
+
+        .page-title h1 {
+            color: var(--accent);
+            font-family: 'Azeret Mono', monospace;
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .page-title p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 25px auto 0;
+            line-height: 1.6;
+        }
+
+        .news-gallery {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            height: 480px;
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            border: double 3px transparent;
+            background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+                            linear-gradient(135deg, rgba(67, 97, 238, 0.5), rgba(255, 255, 255, 0.15));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        .news-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+                            linear-gradient(135deg, var(--accent), rgba(255, 255, 255, 0.2));
+        }
+
+        .news-header {
+            padding: 22px 22px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .news-header h2 {
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0;
+            letter-spacing: -0.5px;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .news-card:hover .news-header h2 {
+            color: var(--accent);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            border-top: double 3px transparent;
+            background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+                            linear-gradient(135deg, rgba(67, 97, 238, 0.5), rgba(255, 255, 255, 0.15));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .news-card:hover .news-image {
+            background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+                            linear-gradient(135deg, var(--accent), rgba(255, 255, 255, 0.2));
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.08);
+        }
+
+        .news-content {
+            padding: 18px 22px 22px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 220px - 65px);
+        }
+
+        .news-summary {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #cbd5e1;
+            flex-grow: 1;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+        .news-date {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .news-date::before {
+            content: "📅";
+            font-size: 0.9rem;
+        }
+
+        .btn-details {
+            background: rgba(67, 97, 238, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(67, 97, 238, 0.3);
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            margin-top: 18px;
+            width: fit-content;
+        }
+
+        .btn-details:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            border-color: var(--accent);
+        }
+
+        .btn-details::after {
+            content: "→";
+            transition: transform 0.3s ease;
+        }
+
+        .btn-details:hover::after {
+            transform: translateX(3px);
+        }
+
+        .news-index {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-family: 'Azeret Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.07);
+            z-index: 1;
+        }
+
+        /* Minimal progress indicator */
+        .progress-container {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.25s ease-out;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 35px;
+            right: 25px;
+            width: 46px;
+            height: 46px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 101;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .news-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .page-title h1 {
+                font-size: 2.8rem;
+            }
+
+            .news-card {
+                height: 460px;
+            }
+
+            .news-image {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                padding: 40px 15px 25px;
+            }
+
+            .page-title h1 {
+                font-size: 2.4rem;
+            }
+
+            .page-title p {
+                font-size: 1rem;
+            }
+
+            .news-gallery {
+                gap: 20px;
+                padding: 0 15px 60px;
+            }
+
+            .news-header h2 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            :root {
+                --navbar-height: 56px;
+            }
+
+            .page-title h1 {
+                font-size: 2.1rem;
+            }
+
+            .news-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .news-card {
+                height: auto;
+                max-height: 520px;
+            }
+
+            .news-content {
+                height: auto;
+            }
+
+            .sorting-controls {
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+
+            .sort-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Sorting buttons styles */
+        .sorting-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .sort-btn {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--accent);
+            border: 2px solid rgba(67, 97, 238, 0.2);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .sort-btn:hover {
+            background: rgba(67, 97, 238, 0.15);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .sort-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="news-page">
+        {% if user.is_authenticated %}
+            <div class="page-title">
+                <h1 data-key="news">Yangiliklar</h1>
+                <p data-key="news_text">Bizning so'nggi yangiliklar, tadbirlar va e'lonlar to'plami</p>
+            </div>
+
+            <div class="sorting-controls">
+                <button class="sort-btn active" data-sort="newest" data-key="new1">Eng yangi</button>
+                <button class="sort-btn" data-sort="oldest" data-key="new2">Eng eski</button>
+                <button class="sort-btn" data-sort="popular" data-key="new3">Mashhur</button>
+            </div>
+
+            <div class="news-gallery">
+                {% for news in object_list %}
+                <div class="news-card">
+                    <span class="news-index">#{{ forloop.counter|stringformat:"02d" }}</span>
+                    {% if news.photo %}
+                    <div class="news-image">
+                        <img src="{{ news.photo.url }}" alt="{{ news.title }}">
+                    </div>
+                    {% else %}
+                    <div class="news-image" style="background: linear-gradient(45deg, #1e293b, #334155); display: flex; align-items: center; justify-content: center;">
+                        <span style="color: #64748b; font-size: 1.2rem;">Rasm yo'q</span>
+                    </div>
+                    {% endif %}
+                    <div class="news-header">
+                        <h2>{{ news.title | title }}</h2>
+                    </div>
+                    <div class="news-content">
+                        <p class="news-summary">{{ news.summary }}</p>
+                        <a href="{% url 'new_detail' news.pk %}" class="btn-details">Batafsil</a>
+                        <div class="news-date">
+                            {{ news.date }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+
+            <div class="scroll-top">
+                <svg viewBox="0 0 24 24">
+                    <path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"></path>
+                </svg>
+            </div>
+        {% else %}
+            <div class="auth-message" style="height: calc(100vh - var(--navbar-height)); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center;">
+                <h1 style="color: var(--accent); font-family: 'Azeret Mono', monospace; margin-bottom: 30px;">PecDev Blogiga xush kelibsiz!</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 30px; max-width: 500px; line-height: 1.6; color: #cbd5e1;">
+                    Assalomu alaykum, saytimizning to'liq imkoniyatlaridan foydalanish uchun iltimos, tizimga kiring yoki ro'yxatdan o'ting.
+                </p>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                    <a href="{% url 'login' %}" style="background: var(--accent); color: white; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">Kirish</a>
+                    <a href="{% url 'signup' %}" style="background: transparent; color: var(--accent); border: 2px solid var(--accent); padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">Ro'yxatdan o'tish</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Card fade-in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Sorting functionality
+        document.querySelectorAll('.sort-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const sortType = button.dataset.sort;
+                const newsGallery = document.querySelector('.news-gallery');
+                const newsCards = Array.from(newsGallery.querySelectorAll('.news-card'));
+
+                newsCards.sort((a, b) => {
+                    if (sortType === 'newest') {
+                        const dateA = new Date(a.querySelector('.news-date').textContent.trim());
+                        const dateB = new Date(b.querySelector('.news-date').textContent.trim());
+                        return dateB - dateA;
+                    } else if (sortType === 'oldest') {
+                        const dateA = new Date(a.querySelector('.news-date').textContent.trim());
+                        const dateB = new Date(b.querySelector('.news-date').textContent.trim());
+                        return dateA - dateB;
+                    } else if (sortType === 'popular') {
+                        // Here you can add logic for sorting by popularity if you have such data
+                        // For now, we'll keep the current order
+                        return 0;
+                    }
+                });
+
+                // Remove all cards
+                newsCards.forEach(card => card.remove());
+                // Add sorted cards back
+                newsCards.forEach(card => newsGallery.appendChild(card));
+                // Reapply animation
+                newsCards.forEach(card => {
+                    card.classList.remove('visible');
+                    observer.observe(card);
+                });
+            });
+        });
+
+        document.querySelectorAll('.news-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const progressBar = document.querySelector('.progress-bar');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+
+            if (progressBar) {
+                progressBar.style.width = `${scrolled}%`;
+            }
+
+            // Scroll to top button
+            const scrollButton = document.querySelector('.scroll-top');
+            if (scrollTop > 500) {
+                scrollButton.classList.add('show');
+            } else {
+                scrollButton.classList.remove('show');
+            }
+        });
+
+        // Scroll to top functionality
+        document.querySelector('.scroll-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Add hover effect to cards
+        document.querySelectorAll('.news-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+                card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.35)';
+                card.style.borderColor = 'rgba(67, 97, 238, 0.25)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.25)';
+                card.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+            });
+        });
+    </script>
+</body>
+</html>
+{% endblock content %}
