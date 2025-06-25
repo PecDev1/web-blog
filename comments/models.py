@@ -15,4 +15,4 @@ class Comment(models.Model):
         return f'Comment by {self.author} on {self.news}'
 
     def get_absolute_url(self):
-        return reverse('main_new')
+        return reverse('comment-detail', kwargs={'pk': self.pk})  # Assuming you have a 'comment-detail' URL pattern
